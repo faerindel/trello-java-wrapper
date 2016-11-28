@@ -76,6 +76,10 @@ public interface Trello {
 
     void createCheckItem(String checkListId, CheckItem checkItem);
 
+    /* Organization */
+
+    Organization getOrganization(String organizationId, Argument... args);
+
     /////////////////
 
     Card createCard(String listId, Card card);

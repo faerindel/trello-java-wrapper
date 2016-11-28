@@ -286,6 +286,14 @@ public class TrelloImpl implements Trello {
         postForLocation(createUrl(ADD_CHECKITEMS_TO_CHECKLIST).asString(), checkItem, checkListId);
     }
 
+    /* Organizations */
+
+    @Override
+    public Organization getOrganization(String organizationId, Argument... args) {
+        Organization organization = get(createUrl(GET_ORGANIZATION).params(args).asString(), Organization.class, organizationId);
+        organization.setInternalTrello(this);
+        return organization;
+    }
 
     /* Others */
 
