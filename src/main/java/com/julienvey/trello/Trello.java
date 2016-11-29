@@ -80,7 +80,9 @@ public interface Trello {
 
     Organization getOrganization(String organizationId, Argument... args);
 
-    public List<Board> getOrganizationBoards(String organizationId, Argument... args);
+    List<Board> getOrganizationBoards(String organizationId, Argument... args);
+
+    List<Member> getOrganizationMembers(String organizationId, Argument... args);
 
     /////////////////
 

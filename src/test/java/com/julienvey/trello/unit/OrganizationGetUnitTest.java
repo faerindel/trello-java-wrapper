@@ -3,6 +3,7 @@ package com.julienvey.trello.unit;
 import com.julienvey.trello.Trello;
 import com.julienvey.trello.TrelloHttpClient;
 import com.julienvey.trello.domain.Board;
+import com.julienvey.trello.domain.Member;
 import com.julienvey.trello.domain.Organization;
 import com.julienvey.trello.impl.TrelloImpl;
 import org.junit.Before;
@@ -68,6 +69,29 @@ public class OrganizationGetUnitTest {
         assertThat(organizationBoards).hasSize(3);
         verify(httpClient).get(eq("https://api.trello.com/1/organizations/{organizationId}/boards?key={applicationKey}&token={userToken}"),
                 eq(Board[].class), eq("idOrg"), eq(""), eq(""));
+        verifyNoMoreInteractions(httpClient);
+    }
+
+    @Test
+    public void testGetOrganizationMembers() {
+        //Given
+        Member member1 = new Member();
+        member1.setId("idBoard1");
+        Member member2 = new Member();
+        member2.setId("idBoard2");
+        Member member3 = new Member();
+        member3.setId("idBoard3");
+
+        when(httpClient.get(anyString(), any(Class.class), (String[]) anyVararg())).thenReturn(new Member[]{member1, member2, member3});
+
+        //When
+        List<Member> organizationMembers = trello.getOrganizationMembers("idOrg");
+
+        //Then
+        assertThat(organizationMembers).isNotNull();
+        assertThat(organizationMembers).hasSize(3);
+        verify(httpClient).get(eq("https://api.trello.com/1/organizations/{organizationId}/members?key={applicationKey}&token={userToken}"),
+                eq(Member[].class), eq("idOrg"), eq(""), eq(""));
         verifyNoMoreInteractions(httpClient);
     }
 }
