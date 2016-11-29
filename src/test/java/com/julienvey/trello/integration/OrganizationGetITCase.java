@@ -2,6 +2,7 @@ package com.julienvey.trello.integration;
 
 import com.julienvey.trello.Trello;
 import com.julienvey.trello.TrelloHttpClient;
+import com.julienvey.trello.domain.Board;
 import com.julienvey.trello.domain.Organization;
 import com.julienvey.trello.impl.TrelloImpl;
 import com.julienvey.trello.impl.http.ApacheHttpClient;
@@ -14,6 +15,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -46,5 +48,14 @@ public class OrganizationGetITCase {
 
         assertThat(organization).isNotNull();
         assertThat(organization.getId()).isEqualTo(ORG_ID);
+    }
+
+    @Test
+    public void testGetOrganizationBoards() {
+        List<Board> organizationBoards = trello.getOrganizationBoards(ORG_ID);
+
+        assertThat(organizationBoards).isNotNull();
+        assertThat(organizationBoards).hasSize(1);
+        assertThat(organizationBoards.get(0).getId()).isEqualTo("518baad5b05dbf4703004852");
     }
 }

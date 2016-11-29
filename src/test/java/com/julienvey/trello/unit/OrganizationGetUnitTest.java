@@ -2,11 +2,14 @@ package com.julienvey.trello.unit;
 
 import com.julienvey.trello.Trello;
 import com.julienvey.trello.TrelloHttpClient;
+import com.julienvey.trello.domain.Board;
 import com.julienvey.trello.domain.Organization;
 import com.julienvey.trello.impl.TrelloImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Matchers.*;
@@ -42,6 +45,29 @@ public class OrganizationGetUnitTest {
 
         verify(httpClient).get(eq("https://api.trello.com/1/organizations/{organizationId}?key={applicationKey}&token={userToken}"),
                 eq(Organization.class), eq("idOrg"), eq(""), eq(""));
+        verifyNoMoreInteractions(httpClient);
+    }
+
+    @Test
+    public void testGetOrganizationBoards() {
+        //Given
+        Board board1 = new Board();
+        board1.setId("idBoard1");
+        Board board2 = new Board();
+        board2.setId("idBoard2");
+        Board board3 = new Board();
+        board3.setId("idBoard3");
+
+        when(httpClient.get(anyString(), any(Class.class), (String[]) anyVararg())).thenReturn(new Board[]{board1, board2, board3});
+
+        //When
+        List<Board> organizationBoards = trello.getOrganizationBoards("idOrg");
+
+        //Then
+        assertThat(organizationBoards).isNotNull();
+        assertThat(organizationBoards).hasSize(3);
+        verify(httpClient).get(eq("https://api.trello.com/1/organizations/{organizationId}/boards?key={applicationKey}&token={userToken}"),
+                eq(Board[].class), eq("idOrg"), eq(""), eq(""));
         verifyNoMoreInteractions(httpClient);
     }
 }
