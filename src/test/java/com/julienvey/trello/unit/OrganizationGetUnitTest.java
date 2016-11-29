@@ -41,8 +41,8 @@ public class OrganizationGetUnitTest {
         Organization organization = trello.getOrganization("idOrg");
 
         //Then
-        assertThat(mockOrganization).isNotNull();
-        assertThat(mockOrganization.getId()).isEqualTo("idOrg");
+        assertThat(organization).isNotNull();
+        assertThat(organization.getId()).isEqualTo("idOrg");
 
         verify(httpClient).get(eq("https://api.trello.com/1/organizations/{organizationId}?key={applicationKey}&token={userToken}"),
                 eq(Organization.class), eq("idOrg"), eq(""), eq(""));
