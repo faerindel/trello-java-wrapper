@@ -283,12 +283,12 @@ If you are missing some fonctionnalities, you can easily contribute and propose 
 | PUT /1/notifications/[idNotification]
 | PUT /1/notifications/[idNotification]/unread
 | POST /1/notifications/all/read
-| GET /1/organizations/[idOrg or name]
+| GET /1/organizations/[idOrg or name] | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png)
 | GET /1/organizations/[idOrg or name]/[field]
 | GET /1/organizations/[idOrg or name]/actions
-| GET /1/organizations/[idOrg or name]/boards
+| GET /1/organizations/[idOrg or name]/boards | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png)
 | GET /1/organizations/[idOrg or name]/boards/[filter]
-| GET /1/organizations/[idOrg or name]/members
+| GET /1/organizations/[idOrg or name]/members | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png) | ![](http://icdn.pro/images/fr/v/e/verifier-vert-ok-icone-8505-48.png)
 | GET /1/organizations/[idOrg or name]/members/[filter]
 | GET /1/organizations/[idOrg or name]/members/[idMember]/cards
 | GET /1/organizations/[idOrg or name]/membersInvited
